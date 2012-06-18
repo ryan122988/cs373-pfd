@@ -244,7 +244,7 @@ def generate_solution (noPreds, rules, successorList) :
     while counter < lengthOfOutput:
         if counter < secondLast:
             outputString = outputString + str(out[counter])
-            #outputString = outputString + " "
+            outputString = outputString + " "
         else:
             outputString = outputString + str(out[counter])
         counter += 1
