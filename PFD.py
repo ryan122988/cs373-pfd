@@ -76,6 +76,180 @@ def find_no_preds (rules, numberOfVerticies) :
             noPreds.append(location)
         counter += 1
     return noPreds
+    
+    
+
+# -------------
+# generate_successors_list
+# -------------
+
+def generate_successors_list (rules) :
+    successors = []
+    successorsList = []
+    val = 0
+    counter = 0
+    lengthOfRules = len(rules)
+    while counter < lengthOfRules:
+        val = rules[counter][0]
+        successors = get_successors(rules, val, counter)
+        assert len(successors) > 0
+        successorsList.append(successors)
+        counter += 1
+    return successorsList
+
+# -------------
+# is_a_successor
+# -------------
+
+def is_a_successor (rule, val) :
+    """
+    Returns true if the vertex from the rule is a successor
+    of the value specified.
+    """
+    counter = 2
+    length = len(rule)
+    while counter < length :
+        if int(rule[counter]) == val:
+            return True
+        if rule[counter] == val:
+            return True
+        counter += 1
+    return False
+
+# -------------
+# get_successors
+# -------------
+
+def get_successors (rules, val, ignore) :
+    if val < 0 :
+        location = ignore
+        location = location - len(rules)
+        if location < 0 :
+            location *= (-1)
+        val = location
+    assert val > 0
+    counter = 0
+    counter2 = 0
+    successors = []
+    numVals = -1
+    lengthOfRules = len(rules)
+    number = -1
+    
+    while counter < lengthOfRules :
+        """
+        if rules[counter][0] == val :
+            counter += 1
+            continue
+        if rules[counter][0] == -1 :
+            counter += 1
+            continue
+        """
+        if rules[counter][0] == -1 :
+            counter += 1
+            continue
+        if counter == ignore :
+            counter += 1
+            continue
+        else:
+            numVals = len(rules[counter])
+            assert numVals >= 3
+            number = rules[counter][0]
+            assert number > 0
+            rule = rules[counter]
+            if is_a_successor(rule, val):
+                successors.append(number)
+            counter += 1
+    numSuccessors = len(successors)
+    if val == 3 :
+        assert numSuccessors > 0
+    if numSuccessors < 1 :
+        successors.append(-1)
+    return successors
+
+# -------------
+# noPreds_sort
+# -------------
+def noPreds_sort (noPreds):
+    lengthOfList = len(noPreds)
+    index = lengthOfList - 1
+    moveVal = noPreds[index]
+    index = index - 1   
+    while index >= 0:
+        if noPreds[index] > moveVal:
+            break
+        index = index - 1
+    index2 = lengthOfList - 2
+    index3 = index2+1
+    temp = noPreds[lengthOfList - 1]
+    while index2 > index :
+        noPreds[index3] = noPreds[index2]
+        index2 = index2 - 1
+        index3 = index3 - 1
+    noPreds[index + 1] = temp
+        
+    
+    
+# -------------
+# update
+# -------------
+def update (valAdded, noPreds, rules, successorList) :
+    noPreds.remove(valAdded)
+    lengthOfRules = len(rules)
+    locationOfSuccessors = valAdded - lengthOfRules
+    if locationOfSuccessors < 0:
+        locationOfSuccessors = locationOfSuccessors * (-1)
+    successors = successorList[locationOfSuccessors]
+    counter = 0
+    location2 = -1
+    while counter < len(successors) :
+        if successors[0] == -1 :
+            break
+        location2 = int(successors[counter])
+        location2 = location2 - lengthOfRules
+        if location2 < 0:
+            location2 = location2*(-1)
+        x = int(rules[location2][1]) - 1
+        rules[location2][1] = x
+        if x == 0:
+            noPreds.append(int(rules[location2][0]))
+            rules[location2] = [-1]
+            if len(noPreds) > 1:
+                noPreds_sort(noPreds)
+        counter += 1
+        
+
+
+# -------------
+# generate_solution
+# -------------
+def generate_solution (noPreds, rules, successorList) :
+    """
+    This function takes in the list of values with no predacessors,
+    the list of predacessor rules, and the successorList.  It then
+    uses this data to generate the output as an list.  Finally it
+    copies this list into a string and returns this string
+    """
+    out = []
+    endPointer = -1
+    valAdded = -1
+    while(len(noPreds) > 0) :
+        endPointer = len(noPreds) - 1
+        out.append(noPreds[endPointer])
+        valAdded = noPreds[endPointer]
+        update(valAdded, noPreds, rules, successorList)
+    counter = 0
+    outputString = ""
+    lengthOfOutput = len(out)
+    secondLast = lengthOfOutput - 1
+    while counter < lengthOfOutput:
+        if counter < secondLast:
+            outputString = outputString + str(out[counter])
+            #outputString = outputString + " "
+        else:
+            outputString = outputString + str(out[counter])
+        counter += 1
+    return outputString
+        
 
 # -------------
 # pfd_compute
