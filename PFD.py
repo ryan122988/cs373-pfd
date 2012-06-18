@@ -2,30 +2,29 @@
 
 
 
-# -------------
-# pfd_compute
-# -------------
-
-
 
 # -------------
 # pfd_print
 # -------------
 
-def pfd_print (w, output)
+def pfd_print (w, output) :
     """
     prints out the integers passed into it
     from the output array on a single line
     with a space between each and terminated
     with a newline character
     """
+
+    """
     x = len(output)
-    x -= 1
+    x = x - 1
     i = 0
-    while i < x
+    while i < x :
         w.write(str(output[i]) + " ")
         i += 1
     w.write(str(output[x] + "\n")
+    """
+    w.write(str(output))
 
 
 
