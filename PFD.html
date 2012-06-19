@@ -1,0 +1,63 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module PFD</title>
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>PFD</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/v/filer4b/v38q001/ryan1229/cs373/cs373-pfd/cs373-pfd/PFD.py">/v/filer4b/v38q001/ryan1229/cs373/cs373-pfd/cs373-pfd/PFD.py</a></font></td></tr></table>
+    <p><tt>#&nbsp;-------------<br>
+#&nbsp;sort<br>
+#&nbsp;-------------</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-find_no_preds"><strong>find_no_preds</strong></a>(rules, numberOfVerticies)</dt><dd><tt>This&nbsp;function&nbsp;scans&nbsp;the&nbsp;list&nbsp;of&nbsp;rules&nbsp;returning&nbsp;a&nbsp;list<br>
+of&nbsp;the&nbsp;verticies&nbsp;that&nbsp;have&nbsp;no&nbsp;predacessors</tt></dd></dl>
+ <dl><dt><a name="-generate_solution"><strong>generate_solution</strong></a>(noPreds, rules, successorList)</dt><dd><tt>This&nbsp;function&nbsp;takes&nbsp;in&nbsp;the&nbsp;list&nbsp;of&nbsp;values&nbsp;with&nbsp;no&nbsp;predacessors,<br>
+the&nbsp;list&nbsp;of&nbsp;predacessor&nbsp;rules,&nbsp;and&nbsp;the&nbsp;successorList.&nbsp;&nbsp;It&nbsp;then<br>
+uses&nbsp;this&nbsp;data&nbsp;to&nbsp;generate&nbsp;the&nbsp;output&nbsp;as&nbsp;an&nbsp;list.&nbsp;&nbsp;Finally&nbsp;it<br>
+copies&nbsp;this&nbsp;list&nbsp;into&nbsp;a&nbsp;string&nbsp;and&nbsp;returns&nbsp;this&nbsp;string</tt></dd></dl>
+ <dl><dt><a name="-generate_successors_list"><strong>generate_successors_list</strong></a>(rules)</dt><dd><tt>This&nbsp;method&nbsp;generates&nbsp;the&nbsp;successor&nbsp;lists<br>
+for&nbsp;all&nbsp;of&nbsp;the&nbsp;verticies.</tt></dd></dl>
+ <dl><dt><a name="-get_successors"><strong>get_successors</strong></a>(rules, val, ignore)</dt><dd><tt>This&nbsp;method&nbsp;generates&nbsp;the&nbsp;successors&nbsp;list&nbsp;for&nbsp;the&nbsp;<br>
+given&nbsp;vale&nbsp;from&nbsp;the&nbsp;list&nbsp;of&nbsp;rules</tt></dd></dl>
+ <dl><dt><a name="-is_a_successor"><strong>is_a_successor</strong></a>(rule, val)</dt><dd><tt>Returns&nbsp;true&nbsp;if&nbsp;the&nbsp;vertex&nbsp;from&nbsp;the&nbsp;rule&nbsp;is&nbsp;a&nbsp;successor<br>
+of&nbsp;the&nbsp;value&nbsp;specified.</tt></dd></dl>
+ <dl><dt><a name="-noPreds_sort"><strong>noPreds_sort</strong></a>(noPreds)</dt><dd><tt>this&nbsp;method&nbsp;puts&nbsp;a&nbsp;newly&nbsp;inserted&nbsp;value&nbsp;in&nbsp;<br>
+the&nbsp;noPreds&nbsp;list&nbsp;into&nbsp;its&nbsp;correct&nbsp;sorted&nbsp;<br>
+location</tt></dd></dl>
+ <dl><dt><a name="-pfd_compute"><strong>pfd_compute</strong></a>(r)</dt><dd><tt>This&nbsp;method&nbsp;reads&nbsp;in&nbsp;the&nbsp;input&nbsp;and&nbsp;then&nbsp;calls&nbsp;other&nbsp;<br>
+methods&nbsp;to&nbsp;calculate&nbsp;the&nbsp;values&nbsp;necessary&nbsp;for&nbsp;<br>
+the&nbsp;generate_solution&nbsp;method&nbsp;to&nbsp;be&nbsp;able&nbsp;to&nbsp;run.</tt></dd></dl>
+ <dl><dt><a name="-pfd_print"><strong>pfd_print</strong></a>(w, output)</dt><dd><tt>prints&nbsp;out&nbsp;the&nbsp;integers&nbsp;passed&nbsp;into&nbsp;it<br>
+from&nbsp;the&nbsp;output&nbsp;array&nbsp;on&nbsp;a&nbsp;single&nbsp;line<br>
+with&nbsp;a&nbsp;space&nbsp;between&nbsp;each&nbsp;and&nbsp;terminated<br>
+with&nbsp;a&nbsp;newline&nbsp;character</tt></dd></dl>
+ <dl><dt><a name="-pfd_solve"><strong>pfd_solve</strong></a>(r, w)</dt><dd><tt>r&nbsp;is&nbsp;a&nbsp;reader&nbsp;and&nbsp;it&nbsp;is&nbsp;passed&nbsp;<br>
+to&nbsp;the&nbsp;function&nbsp;pfd_compute<br>
+w&nbsp;is&nbsp;a&nbsp;writer&nbsp;which&nbsp;is&nbsp;passed&nbsp;along<br>
+with&nbsp;the&nbsp;output&nbsp;array&nbsp;to&nbsp;pfd_print</tt></dd></dl>
+ <dl><dt><a name="-sort"><strong>sort</strong></a>(rules, numberOfVerticies, numberOfRules)</dt><dd><tt>This&nbsp;function&nbsp;first&nbsp;lengthens&nbsp;the&nbsp;rules&nbsp;list&nbsp;to&nbsp;match&nbsp;the&nbsp;total<br>
+number&nbsp;of&nbsp;verticies&nbsp;in&nbsp;the&nbsp;input&nbsp;with&nbsp;all&nbsp;values&nbsp;not&nbsp;present&nbsp;being<br>
+set&nbsp;to&nbsp;[-1].&nbsp;&nbsp;Then&nbsp;because&nbsp;we&nbsp;know&nbsp;no&nbsp;duplicate&nbsp;values&nbsp;will&nbsp;be<br>
+present&nbsp;this&nbsp;function&nbsp;is&nbsp;capable&nbsp;of&nbsp;sorting&nbsp;the&nbsp;list&nbsp;of&nbsp;rules&nbsp;in<br>
+O(n)&nbsp;time.&nbsp;&nbsp;It&nbsp;accomplishes&nbsp;this&nbsp;by&nbsp;making&nbsp;a&nbsp;second&nbsp;list&nbsp;of&nbsp;the&nbsp;exact<br>
+same&nbsp;size&nbsp;as&nbsp;the&nbsp;total&nbsp;number&nbsp;of&nbsp;verticies&nbsp;and&nbsp;then&nbsp;scanning&nbsp;throught<br>
+the&nbsp;original&nbsp;list&nbsp;copying&nbsp;the&nbsp;rules&nbsp;to&nbsp;the&nbsp;second&nbsp;array&nbsp;in&nbsp;the&nbsp;location<br>
+matching&nbsp;the&nbsp;number&nbsp;of&nbsp;the&nbsp;vertex&nbsp;but&nbsp;in&nbsp;reverse&nbsp;sorted&nbsp;order.&nbsp;&nbsp;It&nbsp;then<br>
+returns&nbsp;this&nbsp;reverse&nbsp;sorted&nbsp;list&nbsp;of&nbsp;rules&nbsp;with&nbsp;verticies&nbsp;for&nbsp;which&nbsp;no&nbsp;rules<br>
+were&nbsp;present&nbsp;conatining&nbsp;the&nbsp;value&nbsp;[-1]</tt></dd></dl>
+ <dl><dt><a name="-update"><strong>update</strong></a>(valAdded, noPreds, rules, successorList)</dt><dd><tt>upon&nbsp;updating&nbsp;this&nbsp;method&nbsp;performs&nbsp;all&nbsp;<br>
+necessary&nbsp;computation&nbsp;to&nbsp;guarantee&nbsp;that&nbsp;all&nbsp;<br>
+effects&nbsp;from&nbsp;the&nbsp;outputting&nbsp;of&nbsp;valAdded&nbsp;are&nbsp;<br>
+accounted&nbsp;for</tt></dd></dl>
+</td></tr></table>
+</body></html>
