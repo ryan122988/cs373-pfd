@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 # -------------
-# sort_and_search
+# sort
 # -------------
 def sort(rules, numberOfVerticies, numberOfRules) :
     """
@@ -84,6 +84,10 @@ def find_no_preds (rules, numberOfVerticies) :
 # -------------
 
 def generate_successors_list (rules) :
+    """
+    This method generates the successor lists
+    for all of the verticies.
+    """
     successors = []
     successorsList = []
     val = 0
@@ -121,6 +125,10 @@ def is_a_successor (rule, val) :
 # -------------
 
 def get_successors (rules, val, ignore) :
+    """
+    This method generates the successors list for the 
+    given vale from the list of rules
+    """
     if val < 0 :
         location = ignore
         location = location - len(rules)
@@ -136,14 +144,6 @@ def get_successors (rules, val, ignore) :
     number = -1
     
     while counter < lengthOfRules :
-        """
-        if rules[counter][0] == val :
-            counter += 1
-            continue
-        if rules[counter][0] == -1 :
-            counter += 1
-            continue
-        """
         if rules[counter][0] == -1 :
             counter += 1
             continue
@@ -170,6 +170,11 @@ def get_successors (rules, val, ignore) :
 # noPreds_sort
 # -------------
 def noPreds_sort (noPreds):
+    """
+    this method puts a newly inserted value in 
+    the noPreds list into its correct sorted 
+    location
+    """
     lengthOfList = len(noPreds)
     index = lengthOfList - 1
     moveVal = noPreds[index]
@@ -193,6 +198,12 @@ def noPreds_sort (noPreds):
 # update
 # -------------
 def update (valAdded, noPreds, rules, successorList) :
+    """
+    upon updating this method performs all 
+    necessary computation to guarantee that all 
+    effects from the outputting of valAdded are 
+    accounted for
+    """
     noPreds.remove(valAdded)
     lengthOfRules = len(rules)
     locationOfSuccessors = valAdded - lengthOfRules
@@ -255,6 +266,11 @@ def generate_solution (noPreds, rules, successorList) :
 # pfd_compute
 # -------------
 def pfd_compute (r) :
+    """
+    This method reads in the input and then calls other 
+    methods to calculate the values necessary for 
+    the generate_solution method to be able to run.
+    """
     s = "-1"
     s = r.readline()
     if s == "":
